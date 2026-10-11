@@ -144,7 +144,8 @@ jobs:
 
   docker:
     needs: release
+    # No `secrets: inherit` needed - the build authenticates to ghcr.io with the
+    # automatic GITHUB_TOKEN, which every workflow receives.
     uses: ./.github/workflows/docker-build.yml
     with:
       tag: ${{ needs.release.outputs.version }}
-    secrets: inherit
