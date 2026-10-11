@@ -44,9 +44,11 @@ PAGE = """
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Samsung TV Remote</title>
 <style>
+  html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
   body { font-family: -apple-system, sans-serif; background:#111; color:#fff; margin:0; padding:16px; }
   .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:420px; margin:auto; }
-  button { font-size:20px; padding:22px 0; border:0; border-radius:14px; background:#2a2a2e; color:#fff; }
+  button { font-size:20px; padding:22px 0; border:0; border-radius:14px; background:#2a2a2e; color:#fff;
+           touch-action: manipulation; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
   button:active { background:#0a84ff; }
   .wide { grid-column: span 3; }
 </style>
