@@ -1,0 +1,209 @@
+[build-system]
+requires = ["poetry-core>=2.0.0", "wheel",]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
+
+
+[tool.poetry]
+name = "py-samsung-remote"
+version = "0.1.0"
+description = "A mobile-friendly web remote for controlling a Samsung Smart TV over the local network."
+package-mode = false
+packages = [
+    { include = "samsung_remote", from = "src" },
+]
+
+authors = ["Victor Bajada <bajada.victor@gmail.com>",]
+maintainers = ["Victor Bajada <bajada.victor@gmail.com>",]
+
+include = []
+license = "MIT"
+readme = "README.md"
+
+repository = "https://github.com/tech1ndex/py-samsung-remote"
+documentation = "https://github.com/tech1ndex/py-samsung-remote/blob/main/README.md"
+
+keywords = [
+    "python3",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Typing :: Typed",
+]
+
+
+[tool.poetry.dependencies]
+python="^3.12"
+flask = "^3.1.0"
+samsungtvws = {extras = ["async", "encrypted"], version = "^2.7.2"}
+pydantic = "^2.13.5"
+pydantic-settings = "^2.15.0"
+loguru = "^0.7.3"
+gunicorn = "^23.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "*"
+
+[tool.poetry.group.linters]
+optional = true
+
+
+[tool.poetry.group.linters.dependencies]
+ruff = "^0.16.8"
+
+
+[tool.poetry.group.tests]
+optional = true
+
+[tool.poetry.scripts]
+samsung-remote = "samsung_remote.main:main"
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^9.1.1"
+pytest-cov = "^7.1.0"
+pytest-mock = "^3.15.0"
+tox = "^4.64.1"
+tox-gh-actions = "^3.2.0"
+
+
+[tool.poetry.urls]
+"Tracker" = "https://github.com/tech1ndex/py-samsung-remote/issues"
+"Changelog" = "https://github.com/tech1ndex/py-samsung-remote/blob/main/CHANGELOG.md"
+
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+lint.select = [
+    "A",    # Builtins
+    "ANN",  # Annotations
+    "ARG",  # Unused arguments
+    "B",    # Bugbear
+    "BLE",  # Blind except
+    "C4",   # Comprehensions
+    "C90",  # mccabe
+    "COM",  # Commas
+    "D1",   # Undocumented public elements
+    "D2",   # Docstring conventions
+    "D3",   # Triple double quotes
+    "D4",   # Docstring text format
+    "DTZ",  # Datetimes
+    "EM",   # Error messages
+    "ERA",  # Commented-out code
+    "EXE",  # Executable
+    "F",    # Pyflakes
+    "FA",   # __future__ annotations
+    "FLY",  # F-strings
+    # "FURB", # Refurb
+    "G",    # Logging format
+    "I",    # Isort
+    "ICN",  # Import conventions
+    "INP",  # Disallow PEP-420 (Implicit namespace packages)
+    "INT",  # gettext
+    "ISC",  # Implicit str concat
+    # "LOG",  # Logging
+    "N",    # PEP-8 Naming
+    "NPY",  # Numpy
+    "PERF", # Unnecessary performance costs
+    "PGH",  # Pygrep hooks
+    "PIE",  # Unnecessary code
+    "PL",   # Pylint
+    "PT",   # Pytest
+    "PTH",  # Use Pathlib
+    "PYI",  # Stub files
+    "Q",    # Quotes
+    "RET",  # Return
+    "RUF",  # Ruff
+    "RSE",  # Raise
+    "S",    # Bandit
+    "SIM",  # Code simplification
+    "SLF",  # Private member access
+    "SLOT", # __slots__
+    "T10",  # Debugger
+    "T20",  # Print
+    "TCH",  # Type checking
+    "TID",  # Tidy imports
+    "TRY",  # Exception handling
+    "UP",   # Pyupgrade
+    "W",    # Warnings
+    "YTT",  # sys.version
+]
+lint.ignore = [
+    "D100",    # Missing docstring in public module
+    "D101",    # Missing docstring in public class
+    "D102",    # Missing docstring in public method
+    "D103",    # Missing docstring in public function
+    "D104",    # Missing docstring in public package
+    "D105",    # Missing docstring in magic method
+    "D106",    # Missing docstring in public nested class
+    "D107",    # Missing docstring in __init__
+    "D200",    # One-line docstring should fit on one line with quotes
+    "D201",    # No blank lines allowed before function docstring
+    "D202",    # No blank lines allowed after function docstring
+    "D203",    # One blank line before class docstring
+    "D212",    # Multi-line summary first line
+    "PLR0913", # Too many arguments
+    "Q000",    # Single quotes found but double quotes preferred
+    "G004",    # Logging statement string interpolation
+    "TC001",   # Unittest assert method
+    "TRY400",  # Catching Exception
+]
+line-length = 120
+fix = true
+src = ["src",]
+target-version = "py312"
+
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+multiline-quotes = "double"
+
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+
+[tool.ruff.lint.per-file-ignores]
+# https://beta.ruff.rs/docs/rules/
+"__init__.py" = ["F401","F403","F405",]
+"tests/*" = ["ANN", "ARG", "INP001", "S101",]
+"src/*" = ["ANN", "ARG", "INP001", "S101", "D102", "D100", "D101", "D103", "D104", "D105", "D106", "D107", "TC002", "TC003", "C901", "TRY300",]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+
+[tool.mypy]
+python_version = "3.12"
+strict = false
+explicit_package_bases = true
+namespace_packages = true
+plugins = ["pydantic.mypy"]
+exclude = ["tests/"]
+
+[[tool.mypy.overrides]]
+module = ["samsungtvws.*", "samsung_remote.*"]
+ignore_missing_imports = true
