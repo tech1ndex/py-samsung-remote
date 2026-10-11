@@ -53,6 +53,7 @@ classifiers = [
 python="^3.12"
 flask = "^3.1.0"
 samsungtvws = {extras = ["async", "encrypted"], version = "^2.7.2"}
+websocket-client = "^1.9.0"
 pydantic = "^2.13.5"
 pydantic-settings = "^2.15.0"
 loguru = "^0.7.3"
@@ -190,7 +191,7 @@ max-complexity = 10
 # https://beta.ruff.rs/docs/rules/
 "__init__.py" = ["F401","F403","F405",]
 "tests/*" = ["ANN", "ARG", "INP001", "S101",]
-"src/*" = ["ANN", "ARG", "INP001", "S101", "D102", "D100", "D101", "D103", "D104", "D105", "D106", "D107", "TC002", "TC003", "C901", "TRY300",]
+"src/*" = ["ANN", "ARG", "INP001", "S101", "D102", "D100", "D101", "D103", "D104", "D105", "D106", "D107", "TC002", "TC003", "C901", "TRY300", "S104"]
 
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
