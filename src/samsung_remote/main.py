@@ -51,10 +51,18 @@ PAGE = """
   .wide { grid-column: span 3; }
 </style>
 <div class="grid">
-  <button onclick="k('power')">⏻</button><button onclick="k('source')">Source</button><button onclick="k('mute')">Mute</button>
-  <button onclick="k('volup')">Vol +</button><button onclick="k('up')">▲</button><button onclick="k('home')">Home</button>
-  <button onclick="k('left')">◀</button><button onclick="k('enter')">OK</button><button onclick="k('right')">▶</button>
-  <button onclick="k('voldown')">Vol &minus;</button><button onclick="k('down')">▼</button><button onclick="k('back')">Back</button>
+  <button onclick="k('power')">⏻</button>
+  <button onclick="k('source')">Source</button>
+  <button onclick="k('mute')">Mute</button>
+  <button onclick="k('volup')">Vol +</button>
+  <button onclick="k('up')">▲</button>
+  <button onclick="k('home')">Home</button>
+  <button onclick="k('left')">◀</button>
+  <button onclick="k('enter')">OK</button>
+  <button onclick="k('right')">▶</button>
+  <button onclick="k('voldown')">Vol &minus;</button>
+  <button onclick="k('down')">▼</button>
+  <button onclick="k('back')">Back</button>
 </div>
 <script>
   function k(name){ fetch('/key/'+name, {method:'POST'}); if(navigator.vibrate) navigator.vibrate(10); }
