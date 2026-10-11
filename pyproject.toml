@@ -18,7 +18,7 @@ exclude_lines = [
 
 [tool.poetry]
 name = "py-samsung-remote"
-version = "0.1.0"
+version = "0.0.1"
 description = "A mobile-friendly web remote for controlling a Samsung Smart TV over the local network."
 package-mode = false
 packages = [
